@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "c3sh"
+version = "0.1.0"
+description = "c3 cli"
+authors = ["lefv <lefv@c3.ai>"]
+license = "MIt"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

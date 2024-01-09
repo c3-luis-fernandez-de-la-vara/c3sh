@@ -7,13 +7,20 @@
 # This material may be covered by one or more patents or pending patent applications.
 
 """
-Python CLI framework that aims to simplify writing of v8 clis on python.
-Common way to use is
-'v8 <subject> <action> <parameters>'
+c3 client Python CLI.
+Usage:
+'c3sh <subject> <action> <parameters>'
 
 command `help` accepted at any level.
 
-See example of defining new subject:
+Structure:
+
+```
+|--c3sh.py
+|--subjects/
+|---------/*.py
+```
+
 ```
 k8s_coredns = cli.subject(
     name='k8s-coredns',
