@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-# import inspect
 from collections import namedtuple
-from functools import wraps
 import logging
 from util.utils_local_setup import FormatWithColors
 from classes.cli import CLI

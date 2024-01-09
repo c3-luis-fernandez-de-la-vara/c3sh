@@ -1,3 +1,10 @@
+import argparse
+import inspect
+import logging
+import sys
+from functools import wraps
+from classes.sane_formatter import SaneFormatter
+
 """
 Base class for construction CLI entrypoint like v8 <subject> <action>
 
@@ -30,6 +37,9 @@ Second parameter of `CliOption` accepts same parameters as argparse add_argument
 as a dict.
 """
 
+__all__ = ['Subject']
+
+logger = logging.getLogger()
 class Subject:
 
     def __init__(self, cli, name, common_options, parser):
@@ -57,7 +67,7 @@ class Subject:
                 help=f.__doc__.split('\n')[0] if help is None and f.__doc__ else help,
                 description=f.__doc__ if description is None and f.__doc__ else description,
                 parents=[self._cli.common_parser],
-                formatter_class=_SaneFormatter,
+                formatter_class=SaneFormatter,
                 **kwargs,
             )
 

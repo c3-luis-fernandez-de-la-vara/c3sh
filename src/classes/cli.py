@@ -3,8 +3,9 @@ import argparse
 import sys
 from textwrap import dedent
 import logging
-import ParserWithCapturingErrors
-import Subject
+from classes.ParserWithCapturingErrors import ParserWithCapturingErrors
+from classes.subject import Subject
+from classes.sane_formatter import SaneFormatter
 from util.utils_local_setup import FormatWithColors
 
 __all__ = ["CLI"]
@@ -17,13 +18,6 @@ ch.setFormatter(formatter)
 logger.handlers = [ch]
 logger.setLevel(logging.INFO)
 
-
-class _SaneFormatter(
-    argparse.RawTextHelpFormatter, argparse.ArgumentDefaultsHelpFormatter
-):
-    pass
-
-
 class CLI:
     """Main entry point of CLI. It used too construct <subjects> and to parse command line arguments."""
 
@@ -34,7 +28,7 @@ class CLI:
             getattr(builtins, "__c3_cli_instance").__init(*args, **kwargs)
         return getattr(builtins, "__c3_cli_instance")
 
-    def __init(self, prog, description, formatter_class=_SaneFormatter, **kwargs):
+    def __init(self, prog, description, formatter_class=SaneFormatter, **kwargs):
         self.common_parser = argparse.ArgumentParser(add_help=False)
 
         common_parser_group = self.common_parser.add_argument_group("Global arguments")
@@ -70,7 +64,7 @@ class CLI:
         self.subparsers.add_parser("help", help="Shows current help message")
 
     def subject(
-        self, name, formatter_class=_SaneFormatter, common_options=None, **kwargs
+        self, name, formatter_class=SaneFormatter, common_options=None, **kwargs
     ) -> Subject:
         if "description" in kwargs:
             kwargs["description"] = dedent(kwargs["description"])
