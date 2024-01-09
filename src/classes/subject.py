@@ -1,9 +1,8 @@
-import argparse
 import inspect
 import logging
-import sys
 from functools import wraps
 from classes.sane_formatter import SaneFormatter
+from classes.ParserWithCapturingErrors import ParserWithCapturingErrors
 
 """
 Base class for construction CLI entrypoint like v8 <subject> <action>
@@ -96,12 +95,4 @@ class Subject:
             return f
 
         return decorator
-
-
-class ParserWithCapturingErrors(argparse.ArgumentParser):
-    def error(self, message):
-        logger.error(f'Command line options parsing failure: {message}')
-        self.print_help()
-        sys.exit(2)
-
 

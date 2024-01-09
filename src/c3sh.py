@@ -2,6 +2,7 @@
 
 from collections import namedtuple
 import logging
+import typing
 from util.utils_local_setup import FormatWithColors
 from classes.cli import CLI
 # declare exported symbols

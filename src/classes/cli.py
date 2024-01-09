@@ -22,11 +22,12 @@ class CLI:
     """Main entry point of CLI. It used too construct <subjects> and to parse command line arguments."""
 
     def __new__(cls, *args, **kwargs):
+        logger.info("cli.py | __new__ | ensuring singleton for cli")
         """Ensure CLI is singleton"""
-        if not hasattr(builtins, "__c3_cli_instance"):
-            setattr(builtins, "__c3_cli_instance", super(CLI, cls).__new__(cls))
-            getattr(builtins, "__c3_cli_instance").__init(*args, **kwargs)
-        return getattr(builtins, "__c3_cli_instance")
+        if not hasattr(builtins, "__c3sh_instance__"):
+            setattr(builtins, "__c3sh_instance__", super(CLI, cls).__new__(cls))
+            getattr(builtins, "__c3sh_instance__").__init(*args, **kwargs)
+        return getattr(builtins, "__c3sh_instance__")
 
     def __init(self, prog, description, formatter_class=SaneFormatter, **kwargs):
         self.common_parser = argparse.ArgumentParser(add_help=False)
