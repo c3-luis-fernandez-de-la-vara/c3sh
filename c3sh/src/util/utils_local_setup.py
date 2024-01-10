@@ -19,6 +19,7 @@ import socket
 import builtins
 import time
 
+__all__ = ["FormatWithColors"]
 
 # Configure logger
 class FormatWithColors(logging.Formatter):
